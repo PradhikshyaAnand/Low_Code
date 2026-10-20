@@ -1,0 +1,1910 @@
+/*
+ * Author       : pradhikshyaanand.2024.aim923
+ * Generated on : 21-Oct-2026 00:32:16
+ * Version      : 1.0
+ */
+ application "Event Registration & Participant Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+
+ 	forms
+	{
+		form Event_Registration_Form
+		{
+			success message = "Data Added Successfully!"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Participant_Name
+			(
+    			type = name
+				displayname = "Participant Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			must have Email
+			(
+    			type = email
+				maxchar = 80
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Institution_Address
+			(
+    			type = address
+				displayname = "Institution Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_1
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_2
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			must have Contact_Number
+			(
+    			type = phonenumber
+				displayname = "Contact Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Organization_Name
+			(
+    			type = text
+				displayname = "Organization Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Expectations_from_Event
+			(
+    			type = textarea
+				displayname = "Expectations from Event"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Team_Size
+			(
+				type = number
+				displayname = "Team Size"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Preferred_Session_Date
+			(
+    			type = date
+				displayname = "Preferred Session Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Preferred_Session_Slot
+			(
+    			type = time
+				displayname = "Preferred Session Slot"
+				timedisplayoptions = "hh:mm:ss" 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Event_Track
+			(
+				type = picklist
+				displayname = "Event Track"
+				maxchar = 100
+				values = {"AIML","Web Development","Cybersecurity","IoT"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Participant_Type
+			(
+				type = radiobuttons
+				displayname = "Participant Type"
+				maxchar = 100
+				values = {"Student","Faculty","Professional"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Areas_of_Interest
+			(
+				type = list	
+				displayname = "Areas of Interest"
+				values = {"AI/ML","Web Development","Cybersecurity","IoT","Robotics"}
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Agree_to_Code_of_Conduct
+			(
+				type = checkboxes	
+				displayname = "Agree to Code of Conduct"
+				values = {"I agree to the code of conduct"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Payment_Status
+			(
+				type = picklist
+				displayname = "Payment Status"
+				maxchar = 100
+				values = {"Pending","Paid"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Attendance_Status
+			(
+				type = picklist
+				displayname = "Attendance Status"
+				maxchar = 100
+				values = {"Not Marked","Present","Absent"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Kit_Collected
+			(
+    			type = checkbox
+				displayname = "Kit Collected"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				maxchar = 100
+				values = {"Pending Payment","Confirmed","Checked-In","No Show"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	reports
+	{
+		list All_Registrations_List
+		{
+			displayName = "All_Registrations_List"
+			show all rows from Event_Registration_Form    
+			(
+				Participant_Name  as "Participant Name"
+				Email
+				Institution_Address  as "Institution Address"
+	 			(
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Contact_Number as "Contact Number"
+				(
+					displayformat = plainnumber 
+				)
+				Organization_Name as "Organization Name"
+				Expectations_from_Event as "Expectations from Event"
+				Team_Size as "Team Size"
+				Preferred_Session_Date as "Preferred Session Date"
+				Preferred_Session_Slot as "Preferred Session Slot"
+				Event_Track as "Event Track"
+				Participant_Type as "Participant Type"
+				Areas_of_Interest as "Areas of Interest"
+				Agree_to_Code_of_Conduct as "Agree to Code of Conduct"
+			)
+		}
+		list Payment_Status_Report
+		{
+			displayName = "Payment Status Report"
+			show all rows from Event_Registration_Form    
+			(
+				Participant_Name  as "Participant Name"
+	 			(
+	      			displayformat = [first_name+""+last_name]
+	 			)
+				Email
+				Contact_Number as "Contact Number"
+				(
+					displayformat = formattednumber 
+				)
+				Organization_Name as "Organization Name"
+				Payment_Status as "Payment Status"
+				Status
+				Attendance_Status as "Attendance Status"
+				Kit_Collected as "Kit Collected"
+				(
+						displaytrue = "Yes"
+						displayfalse = "No"
+				)
+				Event_Track as "Event Track"
+				Participant_Type as "Participant Type"
+				Team_Size as "Team Size"
+				Preferred_Session_Date as "Preferred Session Date"
+				(
+					displayformat = fulldate
+				)
+				Preferred_Session_Slot as "Preferred Session Slot"
+				Institution_Address  as "Institution Address"
+	 			(
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Expectations_from_Event as "Expectations from Event"
+				Areas_of_Interest as "Areas of Interest"
+				(
+					delimiter = comma
+				)
+				Agree_to_Code_of_Conduct as "Agree to Code of Conduct"
+				(
+					delimiter = comma
+				)
+			)
+			filters
+			(
+				Payment_Status
+				Status
+				"Paid Registrations"  :  Payment_Status == "Paid"
+				"Pending Payment"  :  Payment_Status == "Pending"
+				"Confirmed"  :  Status == "Confirmed"
+				"Checked-In"  :  Status == "Checked-In"
+			)
+			sort by
+			(
+				Participant_Name.first_name ascending
+			)
+		}
+		list Attendance_Report
+		{
+			displayName = "Attendance Report"
+			show all rows from Event_Registration_Form    
+			(
+				Participant_Name  as "Participant Name"
+	 			(
+	      			displayformat = [first_name+""+last_name]
+	 			)
+				Email
+				Contact_Number as "Contact Number"
+				(
+					displayformat = formattednumber 
+				)
+				Organization_Name as "Organization Name"
+				Attendance_Status as "Attendance Status"
+				Kit_Collected as "Kit Collected"
+				(
+						displaytrue = "Yes"
+						displayfalse = "No"
+				)
+				Status
+				Event_Track as "Event Track"
+				Participant_Type as "Participant Type"
+				Team_Size as "Team Size"
+				Preferred_Session_Date as "Preferred Session Date"
+				(
+					displayformat = fulldate
+				)
+				Preferred_Session_Slot as "Preferred Session Slot"
+			)
+			filters
+			(
+				Attendance_Status
+				Kit_Collected
+				"Present"  :  Attendance_Status == "Present"
+				"Absent"  :  Attendance_Status == "Absent"
+				"Not Marked"  :  Attendance_Status == "Not Marked"
+				"Kit Collected"  :  Kit_Collected == true
+			)
+			sort by
+			(
+				Attendance_Status ascending
+			)
+		}
+		kanban Status_Tracking_Report
+		{
+			displayName = "Status Tracking Report"
+			show all rows from Event_Registration_Form    
+			(
+				Participant_Name  as "Participant Name"
+	 			(
+	      			displayformat = [first_name+""+last_name]
+	 			)
+				Email
+				Contact_Number as "Contact Number"
+				(
+					displayformat = formattednumber 
+				)
+				Organization_Name as "Organization Name"
+				Status
+				Payment_Status as "Payment Status"
+				Attendance_Status as "Attendance Status"
+				Kit_Collected as "Kit Collected"
+				(
+						displaytrue = "Yes"
+						displayfalse = "No"
+				)
+				Event_Track as "Event Track"
+				Participant_Type as "Participant Type"
+				Team_Size as "Team Size"
+				Preferred_Session_Date as "Preferred Session Date"
+				(
+					displayformat = fulldate
+				)
+				Preferred_Session_Slot as "Preferred Session Slot"
+				Institution_Address  as "Institution Address"
+	 			(
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+			)
+			filters
+			(
+				Status
+				Payment_Status
+				"Pending Payment"  :  Status == "Pending Payment"
+				"Confirmed"  :  Status == "Confirmed"
+				"Checked-In"  :  Status == "Checked-In"
+				"No Show"  :  Status == "No Show"
+			)
+			sort by
+			(
+				Status ascending
+			)
+			options
+			(
+	 			display field = Status
+	 		)
+		}
+		kanban Registration_Status_Kanban
+		{
+			displayName = "Registration Status Kanban"
+			show all rows from Event_Registration_Form    
+			(
+				Participant_Name  as "Participant Name"
+				Email
+				Event_Track as "Event Track"
+				Participant_Type as "Participant Type"
+				Payment_Status as "Payment Status"
+				Attendance_Status as "Attendance Status"
+				Status
+				Organization_Name as "Organization Name"
+				Team_Size as "Team Size"
+				Preferred_Session_Date as "Preferred Session Date"
+				(
+					displayformat = fulldate
+				)
+			)
+			options
+			(
+	 			display field = Status
+	 		)
+		}
+		list Track_By_ParticipantType_Pivot
+		{
+			displayName = "Track By Participant Type Pivot"
+			show all rows from Event_Registration_Form    
+			(
+				Participant_Name  as "Participant Name"
+				Email
+				Event_Track as "Event Track"
+				Participant_Type as "Participant Type"
+				Payment_Status as "Payment Status"
+				Attendance_Status as "Attendance Status"
+				Status
+				Organization_Name as "Organization Name"
+				Team_Size as "Team Size"
+				(
+					display = total	
+				)
+			)
+		}
+		calendar Session_Schedule_Calendar
+		{
+			displayName = "Session Schedule Calendar"
+			show all rows from Event_Registration_Form    
+			(
+				Participant_Name  as "Participant Name"
+				Email
+				Event_Track as "Event Track"
+				Participant_Type as "Participant Type"
+				Payment_Status as "Payment Status"
+				Attendance_Status as "Attendance Status"
+				Status
+				Organization_Name as "Organization Name"
+				Team_Size as "Team Size"
+				Preferred_Session_Date as "Preferred Session Date"
+				(
+					displayformat = fulldate
+				)
+				Preferred_Session_Slot as "Preferred Session Slot"
+			)
+			options
+			(
+				display field = Participant_Name
+				start date = Preferred_Session_Date
+			)
+		}
+		list Track_Popularity_Chart
+		{
+			displayName = "Track Popularity Chart"
+			show all rows from Event_Registration_Form    
+			(
+				Participant_Name  as "Participant Name"
+				Email
+				Event_Track as "Event Track"
+				Participant_Type as "Participant Type"
+				Payment_Status as "Payment Status"
+				Attendance_Status as "Attendance Status"
+				Status
+				Organization_Name as "Organization Name"
+				Team_Size as "Team Size"
+				(
+					display = total	
+				)
+			)
+		}
+		list Institution_Wise_Summary
+		{
+			displayName = "Institution Wise Summary"
+			show all rows from Event_Registration_Form    
+			(
+				Participant_Name  as "Participant Name"
+				Email
+				Event_Track as "Event Track"
+				Participant_Type as "Participant Type"
+				Payment_Status as "Payment Status"
+				Attendance_Status as "Attendance Status"
+				Status
+				Organization_Name as "Organization Name"
+				Team_Size as "Team Size"
+				(
+					display = total	
+				)
+			)
+			group by
+			(
+				Organization_Name ascending
+			)
+		}
+		map Participant_Institution_Map
+		{
+			displayName = "Participant Institution Map"
+			show all rows from Event_Registration_Form    
+			(
+				Participant_Name  as "Participant Name"
+				Email
+				Event_Track as "Event Track"
+				Participant_Type as "Participant Type"
+				Payment_Status as "Payment Status"
+				Attendance_Status as "Attendance Status"
+				Status
+				Organization_Name as "Organization Name"
+				Team_Size as "Team Size"
+				Institution_Address  as "Institution Address"
+	 			(
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+			)
+			options
+			(
+	 			display field = Institution_Address
+		 		radius = 50 Kms
+	 		)
+		}
+		timeline Registration_Activity_Timeline
+		{
+			displayName = "Registration Activity Timeline"
+			show all rows from Event_Registration_Form    
+			(
+				Participant_Name  as "Participant Name"
+				Email
+				Event_Track as "Event Track"
+				Participant_Type as "Participant Type"
+				Payment_Status as "Payment Status"
+				Attendance_Status as "Attendance Status"
+				Status
+				Organization_Name as "Organization Name"
+				Team_Size as "Team Size"
+				Added_Time as "Added Time"
+				(
+					displayformat = fulldate
+				)
+			)
+			options
+			(
+				display field = Participant_Name
+				start date = Added_Time
+			)
+		}
+		spreadsheet Registrations_Spreadsheet
+		{
+			displayName = "Registrations Spreadsheet"
+			show all rows from Event_Registration_Form    
+			(
+				Participant_Name  as "Participant Name"
+				Email
+				Event_Track as "Event Track"
+				Participant_Type as "Participant Type"
+				Payment_Status as "Payment Status"
+				Attendance_Status as "Attendance Status"
+				Status
+				Organization_Name as "Organization Name"
+				Team_Size as "Team Size"
+				(
+					display = total	
+				)
+				Preferred_Session_Date as "Preferred Session Date"
+				(
+					displayformat = fulldate
+				)
+			)
+		}
+	}
+	pages
+	{
+		page Event_Command_Center_Page
+		{
+			displayname = "Event Command Center Page"
+			Content="<zml    \n\t\t\tisPdfEnabled='true'\n\t\t\n\t\t\tisPrintEnabled='true'\n\t\t\n\t\t\tbgColor='#00D9B1'\n\t\t\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<panel elementName='Event_Command_Center_.title-bar.tinted.comfortable'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = 'theme:10'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n    \tcornerRadius = '8px'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '24px'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '50%'\n>\n\t<text \n\n\tmarginRight = '10px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#000000'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Normal Text'\n>\n</text>\n\n</pc><pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = 'theme:75'\n\tsize = '24px'\n\tbold = 'true' \n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Event Command Center'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row><row>\n\t<column\n   \t\t width='24%'\n   \t>\n\t<row>\n\t<column\n   \t\t width='50%'\n   \t>\n\t<row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<report \n\telementName='Report'\n\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'Track_Popularity_Chart'\n\t\n\t\tiszreport = 'false'\n\theightType = 'auto'\n\theightValue = '700'\n/>\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<panel elementName='Panel'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<button \n\t\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'All_Registrations_List'\n\t\ttarget = 'new-window'\n\tcolor = '#FFFFFF'\n\tsize = '16px'\n\ttext ='All_Registrations_List'\n\t\tbgColor = '#0072F4'\n/>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row>\n</column><column\n   \t\t width='50%'\n   \t>\n\t<gauge \n\telementName='Gauge 1'\n\n\tcolor = '#000000'\n\tsize = '20px'\n\tfontFamily = 'default' \n\tbgColor = '#FFFFFF'\n\ttheme = 'theme1'\n\tdisplayType = 'actual'\n\ttype = '3'\n\tvalue = 'thisapp.Event_Registration_Form.Team_Size.avg'\n\t\tcriteria = 'Attendance_Status == &quot;Present&quot;'\n>\n<target size=\"15px\" color=\"#7F7F7F\" fontFamily=\"default\" value=\"2\"\n/><ranges>\n\t\t\t<range color=\"#2D72FF\" width=\"50\" />\n\t\t<range color=\"#FF6C2D\" width=\"50\" />\n</ranges><maximumvalue size=\"15px\" color=\"#7F7F7F\" value=\"5\" \n/>\n</gauge>\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<board\n    \n\tbgColor = '#FFFFFF'\n        bgColorType = 'solid'\n\tpadding = '0px'\nelementName='Board'\n    layoutType = 'grid'\n        items = '1'\n    appLinkName = 'thisapp'\n    formLinkName = 'Event_Registration_Form'\n    rankBy = 'ID'\n    rankOrder = 'highestToLowest'\n    rankAggregate = 'count'\n    limit = '3'\n    groupBy = 'Event_Track'\n>\n<boardHeader>\n    <pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '14px'\n\tpaddingLeft = '15px'\n\tpaddingRight = '15px'\n\tpaddingBottom = '14px'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#000000'\n\tsize = '17px'\n\tbold = 'true' \n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Course Completion by Department'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</boardHeader>\n<boardLayout\n                paddingRight = '15px'\n                paddingBottom = '14px'\n                paddingLeft = '15px'\n                paddingTop = '2px'\n                itemGap = '10px'\n>\n    <pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingLeft = '20px'\n\tpaddingRight = '20px'\n\n    borderColor = '#F2F2F2'\n    borderWidth = '1px'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n    \tcornerRadius = '12px'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '10px'\n\tpaddingBottom = '10px'\n\n\t\twidth = '70%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#000000'\n\tsize = '19px'\n\tbold = 'true' \n\ttype = 'boardData'\n\n\n    lineHeight = '26'\n    numOfLines = '1'\n\n\n\n\n\n\t  value = 'rank'\n>\n</text>\n\n</pc><pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '20px'\n\n\tcolor = '#000000'\n\tbgColor = '#F7F7FB'\n\twidth = '36px'\n\theight = '36px'\n\ttype = 'icon'\n\tvalue = 'education-books-46'\n\tsize = '20px'\n\tcornerRadius = '18px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<text \n\n\tmarginLeft = '15px'\n\tcolor = '#000000'\n\tsize = '16px'\n\ttype = 'boardData'\n\n\n    lineHeight = '43'\n    numOfLines = '1'\n\n\n\n\n\n\t  value = 'groupedField'\n>\n</text>\n\n</pc>\n</pr>\n</pc><pc \n\t\tpaddingTop = '10px'\n\tpaddingBottom = '10px'\n\n\t\twidth = '30%'\n\t\thAlign = 'right'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = 'theme'\n\tsize = '17px'\n\tbold = 'true' \n\ttype = 'boardData'\n\n\n    lineHeight = '23'\n    numOfLines = '1'\n\n\n\n\n\n\t  value = 'rankAggregate'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</boardLayout>\n</board>\n</column>\n</row>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<chart \n\telementName='Chart'\n\n\ttype = 'Line'\n\tytitle = 'Team size'\n\tbgColor = '#FFFFFF'\n\ttheme = 'theme1'\n\tlegendPos = 'center.top'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'Event_Registration_Form'\n\txfield = 'Participant_Name.first_name'\n\tyfields = 'sum:Team_Size'\n\tyAxisInterval = '1'\n/>\n\n</column><column\n   \t\t width='27%'\n   \t>\n\t<chart \n\telementName='Chart 1'\n\n\ttype = 'Bar'\n\tytitle = 'Team Size'\n\tbgColor = '#FFFFFF'\n\ttheme = 'theme1'\n\tlegendPos = 'center.top'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'Event_Registration_Form'\n\txfield = 'Participant_Name.first_name'\n\tyfields = 'value:Team_Size'\n\tyAxisInterval = '1'\n\tquickFilters = 'Participant_Type'\n\tshowDataLabel = 'true'\n\tunderlyingReport = 'All_Registrations_List'\n/>\n\n</column><column\n   \t\t width='24%'\n   \t>\n\t<report \n\telementName='Report 1'\n\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'All_Registrations_List'\n\t\n\t\tiszreport = 'false'\n\theightType = 'auto'\n\theightValue = '700'\n/>\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<form \n\telementName='Form'\n\n\tappLinkName = 'thisapp'\n\tlinkName = 'Event_Registration_Form'\n\theightType = 'auto'\n\turlType = 'none'\n\tzc_Header = 'false'\n/> \n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<panel elementName='event_guidelines_pan.list-panel.tinted.comfortable'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = 'theme:10'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n    \tcornerRadius = '8px'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '24px'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = 'theme:75'\n\tsize = '15px'\n\tbold = 'true' \n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Event Guidelines'\n>\n</text>\n\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='8px'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = 'theme:75'\n\tsize = '13px'\n\tbold = 'true' \n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Please follow all event rules and guidelines during the event.'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row><row>\n\t<column\n   \t\t width='50%'\n   \t>\n\t<board\n    \n\tbgColor = '#FFFFFF'\n        bgColorType = 'solid'\n\tpadding = '0px'\nelementName='Board'\n    layoutType = 'grid'\n        items = '1'\n    appLinkName = 'thisapp'\n    formLinkName = 'Event_Registration_Form'\n    rankBy = 'Status'\n    rankOrder = 'highestToLowest'\n    rankAggregate = 'count'\n    limit = '10'\n    groupBy = 'Status'\n>\n<boardHeader>\n    <pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '14px'\n\tpaddingLeft = '15px'\n\tpaddingRight = '15px'\n\tpaddingBottom = '14px'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#000000'\n\tsize = '17px'\n\tbold = 'true' \n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Registrations by Status'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</boardHeader>\n<boardLayout\n                paddingRight = '15px'\n                paddingBottom = '14px'\n                paddingLeft = '15px'\n                paddingTop = '2px'\n                itemGap = '10px'\n>\n    <pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingLeft = '20px'\n\tpaddingRight = '20px'\n\n    borderColor = '#F2F2F2'\n    borderWidth = '1px'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n    \tcornerRadius = '12px'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '10px'\n\tpaddingBottom = '10px'\n\n\t\twidth = '70%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#000000'\n\tsize = '19px'\n\tbold = 'true' \n\ttype = 'boardData'\n\n\n    lineHeight = '26'\n    numOfLines = '1'\n\n\n\n\n\n\t  value = 'rank'\n>\n</text>\n\n</pc><pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '20px'\n\n\tcolor = '#000000'\n\tbgColor = '#F7F7FB'\n\twidth = '36px'\n\theight = '36px'\n\ttype = 'icon'\n\tvalue = 'education-books-46'\n\tsize = '20px'\n\tcornerRadius = '18px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<text \n\n\tmarginLeft = '15px'\n\tcolor = '#000000'\n\tsize = '16px'\n\ttype = 'boardData'\n\n\n    lineHeight = '22'\n    numOfLines = '1'\n\n\n\n\n\n\t  value = 'groupedField'\n>\n</text>\n\n</pc>\n</pr>\n</pc><pc \n\t\tpaddingTop = '10px'\n\tpaddingBottom = '10px'\n\n\t\twidth = '30%'\n\t\thAlign = 'right'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = 'theme'\n\tsize = '17px'\n\tbold = 'true' \n\ttype = 'boardData'\n\n\n    lineHeight = '23'\n    numOfLines = '1'\n\n\n\n\n\n\t  value = 'rankAggregate'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</boardLayout>\n</board>\n</column><column\n   \t\t width='50%'\n   \t>\n\t<gauge \n\telementName='Gauge'\n\n\t\n\ttitle = 'Registration Progress'\n\t\n\t\ttitleColor = '#222326'\n\tcolor = '#000000'\n\tsize = '20px'\n\tfontFamily = 'default' \n\tbgColor = '#FFFFFF'\n\ttheme = 'theme'\n\tdisplayType = 'actual'\n\ttype = '2'\n\tfilledColor = 'theme'\n\tnonFilledColor = '#F5F5F5'\n\tneedleColor = '#000000'\n\ttargetColor = '#D8D8D8'\n\tvalue = 'thisapp.Event_Registration_Form.ID.count'\n>\n<target size=\"15px\" color=\"#7F7F7F\" fontFamily=\"default\" value=\"1000\"\n/><maximumvalue size=\"15px\" color=\"#7F7F7F\" value=\"1000\" \n/>\n</gauge>\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<search \n\telementName='Search'\n\tpaddingTop = '5px'\n\tpaddingLeft = '15px'\n\tpaddingRight = '15px'\n\tpaddingBottom = '5px'\n\tbgtype = 'none'\n\tbgColor = 'transparent'\n\n\tshape = 'flat'\n\tresultComponent = 'report'\n\tlinkName = 'All_Registrations_List'\n\ttarget = 'new-window'\n\tcriteriaString = 'Participant_Name.contains(input.searchString) || Email.contains(input.searchString) || Organization_Name.contains(input.searchString) || Event_Track.contains(input.searchString)'\n\tfontFamily = 'default'\n\tappLinkName = 'thisapp'\n\tstyle = '2'\n\tplaceholder = 'Search by name, email, organization, or track'\n\n>\n<searchbar color=\"#000000\" bgColor=\"#FFFFFF\" fontSize=\"15px\"\n/><searchbutton color=\"#FFFFFF\" bgColor=\"theme\" \nfontSize=\"15px\"  /></search>\n</column>\n</row>\n</layout>\n</zml>"
+		}
+		page Event_Dashboard
+		{
+			displayname = "Event Dashboard"
+			Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<row>\n\t<column\n   \t\t width='20%'\n   \t>\n\t<panel elementName='Total_Events_KPI.stat.accent-top.comfortable'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#FFFFFF'\n\n    borderColor = '#F0F0F0'\n    borderWidth = '1px'\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n    \tcornerRadius = '8px'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='4px'\n>\n\t<pc \n\t\tbgColor = 'theme'\n\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '24px'\n\tpaddingLeft = '24px'\n\tpaddingRight = '24px'\n\tpaddingBottom = '24px'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = '#575757'\n\tsize = '13px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Total Events'\n>\n</text>\n\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='8px'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = '#1C1C1C'\n\tsize = '30px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.Event_Registration_Form.ID.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='8px'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = '#575757'\n\tsize = '12px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Total Events'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='20%'\n   \t>\n\t<panel elementName='Total_Registrations_KP.stat.accent-top.comfortable'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#FFFFFF'\n\n    borderColor = '#F0F0F0'\n    borderWidth = '1px'\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n    \tcornerRadius = '8px'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='4px'\n>\n\t<pc \n\t\tbgColor = 'theme'\n\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '24px'\n\tpaddingLeft = '24px'\n\tpaddingRight = '24px'\n\tpaddingBottom = '24px'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = '#575757'\n\tsize = '13px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Total Registrations'\n>\n</text>\n\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='8px'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = '#1C1C1C'\n\tsize = '30px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.Event_Registration_Form.ID.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='8px'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = '#575757'\n\tsize = '12px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Total Registrations'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='20%'\n   \t>\n\t<panel elementName='Upcoming_Events_KPI.stat.accent-top.comfortable'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#FFFFFF'\n\n    borderColor = '#F0F0F0'\n    borderWidth = '1px'\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n    \tcornerRadius = '8px'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='4px'\n>\n\t<pc \n\t\tbgColor = 'theme'\n\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '24px'\n\tpaddingLeft = '24px'\n\tpaddingRight = '24px'\n\tpaddingBottom = '24px'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = '#575757'\n\tsize = '13px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Upcoming Events'\n>\n</text>\n\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='8px'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = '#1C1C1C'\n\tsize = '30px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'Preferred_Session_Date &gt;= &quot;21-Oct-2026&quot;'\n\t  value = 'thisapp.Event_Registration_Form.ID.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='8px'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = '#575757'\n\tsize = '12px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Upcoming Events'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='20%'\n   \t>\n\t<panel elementName='Completed_Events_KPI.stat.accent-top.comfortable'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#FFFFFF'\n\n    borderColor = '#F0F0F0'\n    borderWidth = '1px'\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n    \tcornerRadius = '8px'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='4px'\n>\n\t<pc \n\t\tbgColor = 'theme'\n\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '24px'\n\tpaddingLeft = '24px'\n\tpaddingRight = '24px'\n\tpaddingBottom = '24px'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = '#575757'\n\tsize = '13px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Completed Events'\n>\n</text>\n\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='8px'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = '#1C1C1C'\n\tsize = '30px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'Preferred_Session_Date &lt; &quot;21-Oct-2026&quot;'\n\t  value = 'thisapp.Event_Registration_Form.ID.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='8px'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = '#575757'\n\tsize = '12px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Completed Events'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='20%'\n   \t>\n\t<panel elementName='Total_Participants_KPI.stat.accent-top.comfortable'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#FFFFFF'\n\n    borderColor = '#F0F0F0'\n    borderWidth = '1px'\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n    \tcornerRadius = '8px'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='4px'\n>\n\t<pc \n\t\tbgColor = 'theme'\n\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '24px'\n\tpaddingLeft = '24px'\n\tpaddingRight = '24px'\n\tpaddingBottom = '24px'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = '#575757'\n\tsize = '13px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Total Participants'\n>\n</text>\n\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='8px'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = '#1C1C1C'\n\tsize = '30px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.Event_Registration_Form.ID.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='8px'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<text \n\n\tcolor = '#575757'\n\tsize = '12px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Total Participants'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row>\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<search \n\telementName='Search'\n\tpaddingTop = '5px'\n\tpaddingLeft = '15px'\n\tpaddingRight = '15px'\n\tpaddingBottom = '5px'\n\tbgtype = 'none'\n\tbgColor = 'transparent'\n\n\tshape = 'flat'\n\tresultComponent = 'report'\n\tlinkName = 'All_Registrations_List'\n\ttarget = 'new-window'\n\tcriteriaString = 'Event_Track.contains(input.searchString) || Status.contains(input.searchString) || Participant_Type.contains(input.searchString) || Added_Time.contains(input.searchString)'\n\tfontFamily = 'default'\n\tappLinkName = 'thisapp'\n\tstyle = '2'\n\tplaceholder = 'Search by track, status, participant type, or date'\n\n>\n<searchbar color=\"#000000\" bgColor=\"#ffffff\" fontSize=\"15px\"\n/><searchbutton color=\"#ffffff\" bgColor=\"theme\" \nfontSize=\"15px\"  /></search>\n</column>\n</row><row>\n\t<column\n   \t\t width='50%'\n   \t>\n\t<row>\n\t<column\n   \t\t width='50%'\n   \t>\n\t<chart \n\telementName='Chart'\n\n\t\n\ttitle = 'Registrations by Event Track'\n\t\n\ttype = 'Pie'\n\tbgColor = '#FFFFFF'\n\ttheme = 'theme'\n\tlegendPos = 'center.top'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'Event_Registration_Form'\n\txfield = 'Event_Track'\n\tyfields = 'count:ID'\n/>\n\n</column><column\n   \t\t width='50%'\n   \t>\n\t<chart \n\telementName='Chart 1'\n\n\t\n\ttitle = 'Registrations by Event Track'\n\t\n\ttype = 'Column'\n\tbgColor = '#FFFFFF'\n\ttheme = 'theme'\n\tlegendPos = 'center.top'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'Event_Registration_Form'\n\txfield = 'Event_Track'\n\tyfields = 'count:ID'\n/>\n\n</column>\n</row>\n</column><column\n   \t\t width='50%'\n   \t>\n\t<row>\n\t<column\n   \t\t width='50%'\n   \t>\n\t<chart \n\telementName='Chart 2'\n\n\t\n\ttitle = 'Registration Status Distribution'\n\t\n\ttype = 'Donut'\n\tbgColor = '#FFFFFF'\n\ttheme = 'theme'\n\tlegendPos = 'center.top'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'Event_Registration_Form'\n\txfield = 'Status'\n\tyfields = 'count:ID'\n/>\n\n</column><column\n   \t\t width='50%'\n   \t>\n\t<chart \n\telementName='Chart 3'\n\n\t\n\ttitle = 'Registrations Over Time'\n\t\n\ttype = 'Line'\n\tbgColor = '#FFFFFF'\n\ttheme = 'theme'\n\tlegendPos = 'center.top'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'Event_Registration_Form'\n\txfield = 'Added_Time'\n\tyfields = 'count:ID'\n/>\n\n</column>\n</row>\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<chart \n\telementName='Chart 4'\n\n\t\n\ttitle = 'Registrations by Participant Type'\n\t\n\ttype = 'Column'\n\tbgColor = '#FFFFFF'\n\ttheme = 'theme'\n\tlegendPos = 'center.top'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'Event_Registration_Form'\n\txfield = 'Participant_Type'\n\tyfields = 'count:ID'\n/>\n\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<row>\n\t<column\n   \t\t width='33%'\n   \t>\n\t<report \n\telementName='Report'\n\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'All_Registrations_List'\n\t\tcriteriaString = 'Preferred_Session_Date &gt;= &quot;21-Oct-2026&quot;'\n\t\n\t\tiszreport = 'false'\n\t\t\t\t\tzc_Print = 'false'\n\t\t\t\t\tzc_Export = 'false'\n\t\t\t\t\tzc_DelRec = 'false'\n\t\t\t\t\tzc_DuplRec = 'false'\n\theightType = 'auto'\n\theightValue = '700'\n/>\n</column><column\n   \t\t width='33%'\n   \t>\n\t<report \n\telementName='Report 1'\n\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'Registration_Activity_Timeline'\n\t\n\t\tiszreport = 'false'\n\t\t\t\t\tzc_Print = 'false'\n\t\t\t\t\tzc_Export = 'false'\n\t\t\t\t\tzc_DelRec = 'false'\n\t\t\t\t\tzc_DuplRec = 'false'\n\theightType = 'auto'\n\theightValue = '700'\n/>\n</column><column\n   \t\t width='34%'\n   \t>\n\t<report \n\telementName='Report 2'\n\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'Track_Popularity_Chart'\n\t\n\t\tiszreport = 'false'\n\t\t\t\t\tzc_Print = 'false'\n\t\t\t\t\tzc_Export = 'false'\n\t\t\t\t\tzc_DelRec = 'false'\n\t\t\t\t\tzc_DuplRec = 'false'\n\theightType = 'auto'\n\theightValue = '700'\n/>\n</column>\n</row>\n</column>\n</row>\n</layout>\n</zml>"
+		}
+	}
+
+
+
+
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Developer"
+			{
+				name = "Developer"
+				type = Developer
+				permissions = {Chat:false, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Developer Profile\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+	customize
+	{
+		icon
+		{
+			text = "ERP"
+			background color = "theme"
+			foreground color = "#ffffff"
+		}
+	}
+
+	web
+	{
+		forms
+		{
+			form Event_Registration_Form
+			{
+				label placement = left
+			}
+		}
+		reports
+		{
+			report All_Registrations_List
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Institution_Address as "Institution Address"
+								Contact_Number as "Contact Number"
+								Organization_Name as "Organization Name"
+								Expectations_from_Event as "Expectations from Event"
+								Team_Size as "Team Size"
+								Preferred_Session_Date as "Preferred Session Date"
+								Preferred_Session_Slot as "Preferred Session Slot"
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Areas_of_Interest as "Areas of Interest"
+								Agree_to_Code_of_Conduct as "Agree to Code of Conduct"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report Payment_Status_Report
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Payment_Status as "Payment Status"
+								Status
+								Organization_Name as "Organization Name"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						registration_details
+						(
+		     				title = "Registration Details"
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Contact_Number as "Contact Number"
+								Organization_Name as "Organization Name"
+								Payment_Status as "Payment Status"
+								Status
+								Attendance_Status as "Attendance Status"
+								Kit_Collected as "Kit Collected"
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Team_Size as "Team Size"
+								Preferred_Session_Date as "Preferred Session Date"
+								Preferred_Session_Slot as "Preferred Session Slot"
+								Institution_Address as "Institution Address"
+								Expectations_from_Event as "Expectations from Event"
+								Areas_of_Interest as "Areas of Interest"
+								Agree_to_Code_of_Conduct as "Agree to Code of Conduct"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report Attendance_Report
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Attendance_Status as "Attendance Status"
+								Kit_Collected as "Kit Collected"
+								Status
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						attendance_details
+						(
+		     				title = "Attendance Details"
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Contact_Number as "Contact Number"
+								Organization_Name as "Organization Name"
+								Attendance_Status as "Attendance Status"
+								Kit_Collected as "Kit Collected"
+								Status
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Team_Size as "Team Size"
+								Preferred_Session_Date as "Preferred Session Date"
+								Preferred_Session_Slot as "Preferred Session Slot"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report Status_Tracking_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = 4
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Payment_Status as "Payment Status"
+								Attendance_Status as "Attendance Status"
+								Kit_Collected as "Kit Collected"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						status_details
+						(
+		     				title = "Status Details"
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Contact_Number as "Contact Number"
+								Organization_Name as "Organization Name"
+								Status
+								Payment_Status as "Payment Status"
+								Attendance_Status as "Attendance Status"
+								Kit_Collected as "Kit Collected"
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Team_Size as "Team Size"
+								Preferred_Session_Date as "Preferred Session Date"
+								Preferred_Session_Slot as "Preferred Session Slot"
+								Institution_Address as "Institution Address"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report Registration_Status_Kanban
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = 4
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Payment_Status as "Payment Status"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						registration_details
+						(
+		     				title = "Registration Details"
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Payment_Status as "Payment Status"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report Track_By_ParticipantType_Pivot
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Payment_Status as "Payment Status"
+								Attendance_Status as "Attendance Status"
+								Status
+								Organization_Name as "Organization Name"
+								Team_Size as "Team Size"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						registration_details
+						(
+		     				title = "Registration Details"
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Payment_Status as "Payment Status"
+								Attendance_Status as "Attendance Status"
+								Status
+								Organization_Name as "Organization Name"
+								Team_Size as "Team Size"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report Session_Schedule_Calendar
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = 4
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Payment_Status as "Payment Status"
+								Preferred_Session_Slot as "Preferred Session Slot"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						registration_details
+						(
+		     				title = "Registration Details"
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Payment_Status as "Payment Status"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report Track_Popularity_Chart
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Payment_Status as "Payment Status"
+								Attendance_Status as "Attendance Status"
+								Status
+								Organization_Name as "Organization Name"
+								Team_Size as "Team Size"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						registration_details
+						(
+		     				title = "Registration Details"
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Payment_Status as "Payment Status"
+								Attendance_Status as "Attendance Status"
+								Status
+								Organization_Name as "Organization Name"
+								Team_Size as "Team Size"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report Institution_Wise_Summary
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Payment_Status as "Payment Status"
+								Attendance_Status as "Attendance Status"
+								Status
+								Organization_Name as "Organization Name"
+								Team_Size as "Team Size"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						registration_details
+						(
+		     				title = "Registration Details"
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Payment_Status as "Payment Status"
+								Attendance_Status as "Attendance Status"
+								Status
+								Organization_Name as "Organization Name"
+								Team_Size as "Team Size"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report Participant_Institution_Map
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = 4
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Institution_Address as "Institution Address"
+								Organization_Name as "Organization Name"
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						registration_details
+						(
+		     				title = "Registration Details"
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Institution_Address as "Institution Address"
+								Email
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report Registration_Activity_Timeline
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = 4
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Payment_Status as "Payment Status"
+								Added_Time as "Added Time"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						registration_details
+						(
+		     				title = "Registration Details"
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Payment_Status as "Payment Status"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report Registrations_Spreadsheet
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -3
+						datablock1
+						(
+							layout type = -3
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Payment_Status as "Payment Status"
+								Attendance_Status as "Attendance Status"
+								Status
+								Organization_Name as "Organization Name"
+								Team_Size as "Team Size"
+								Preferred_Session_Date as "Preferred Session Date"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								Participant_Name as "Participant Name"
+								Email
+								Event_Track as "Event Track"
+								Participant_Type as "Participant Type"
+								Payment_Status as "Payment Status"
+								Attendance_Status as "Attendance Status"
+								Status
+								Organization_Name as "Organization Name"
+								Team_Size as "Team Size"
+								Preferred_Session_Date as "Preferred Session Date"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+							)
+						)
+				)
+			}
+		}
+		menu
+		{
+			space Space
+			{
+				displayname = "Space"
+				icon = "objects-spaceship"
+
+				section Event_Registration_Form
+				{
+					displayname = "Event_Registration_Form"
+					icon = "tech-desktop"
+					form  Event_Registration_Form
+					{
+						icon = "tech-desktop"
+					}
+					report All_Registrations_List
+					{
+						icon = "tech-desktop"
+					}
+					report Payment_Status_Report
+					{
+						icon = "shopping-cash-register"
+					}
+					report Attendance_Report
+					{
+						icon = "business-laptop-71"
+					}
+					report Status_Tracking_Report
+					{
+						icon = "business-laptop-71"
+					}
+					report Registration_Status_Kanban
+					{
+						icon = "design-window-paragraph"
+					}
+					report Track_By_ParticipantType_Pivot
+					{
+						icon = "media-1-button-next"
+					}
+					report Session_Schedule_Calendar
+					{
+						icon = "ui-1-calendar-60"
+					}
+					report Track_Popularity_Chart
+					{
+						icon = "shopping-chart"
+					}
+					report Institution_Wise_Summary
+					{
+						icon = "education-board-51"
+					}
+					report Participant_Institution_Map
+					{
+						icon = "users-2-pin"
+					}
+					report Registration_Activity_Timeline
+					{
+						icon = "design-window-paragraph"
+					}
+					report Registrations_Spreadsheet
+					{
+						icon = "ui-1-database"
+					}
+					page Event_Command_Center_Page
+					{
+						icon = "tech-desktop"
+					}
+				}
+				section ZC_App_Preferences
+				{
+					displayname = "App Preferences"
+					icon = "design-app"
+					systemcomponent
+					{
+						type = localization
+						displayname = "Language Selection"
+						icon = "education-language"
+					}
+					systemcomponent
+					{
+						type = connection
+						displayname = "Integrations"
+						icon = "tech-2-connection"
+					}
+				}
+				section ZC_Approvals
+				{
+					displayname = "Approvals"
+					icon = "ui-2-hourglass"
+					systemcomponent
+					{
+						type = approval
+						approval status = pending
+						displayname = "Pending Tasks"
+						icon = "ui-2-hourglass"
+					}
+					systemcomponent
+					{
+						type = approval
+						approval status = completed
+						displayname = "Completed Tasks"
+						icon = "design-todo"
+					}
+				}
+				section SharedAnalytics_Section
+				{
+					type = shared_user_report_section
+					displayname = "Reports"
+					icon = "business-chart-bar-33"
+				}
+				section Event_Dashboard_Section
+				{
+					displayname = "Event Dashboard"
+					icon = "tech-desktop"
+					page Event_Dashboard
+					{
+						icon = "tech-desktop"
+					}
+				}
+			}
+			preference
+			{
+				icon
+				{
+					style = outline
+				}
+			}
+		}
+		customize
+		{
+			font = "lato"
+			color options
+			{
+				color = "11"
+			}
+			logo
+			{
+				preference = "app_icon"
+				placement = "left"
+			}
+		}
+	}
+	phone
+	{
+		forms
+		{
+			form Event_Registration_Form
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = twocolumn
+			font = "default"
+			style = "3"
+			color options
+			{
+				color = chryslerpurple
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	tablet
+	{
+		forms
+		{
+			form Event_Registration_Form
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = slidingpane
+			font = "default"
+			style = "3"
+			color options
+			{
+				color = amethyst
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	translation
+{
+{"Language_Settings":{"LANGAGUE_WITH_LOGIN":"browser"}}
+}
+}
